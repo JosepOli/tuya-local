@@ -1,0 +1,349 @@
+name: Airmart air conditioner
+products:
+  - id: 0000004ivv
+    manufacturer: Airmart
+    model: AIRMART TK5 Wifi
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: wet
+                value: dry
+              - dps_val: health_wet
+                value: dry
+              - dps_val: hot
+                value: heat
+              - dps_val: wind
+                value: fan_only
+              - dps_val: energy_save
+                value: cool
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 16
+          max: 30
+      - id: 3
+        name: current_temperature
+        type: integer
+        unit: C
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: high
+            value: high
+          - dps_val: strong
+            value: strong
+          - dps_val: breeze
+            value: breeze
+          - dps_val: silent
+            value: quiet
+          - dps_val: quick
+            value: turbo
+      - id: 109
+        name: preset_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: sleep
+          - dps_val: false
+            value: none
+  - entity: number
+    name: Humidity setpoint
+    category: config
+    class: humidity
+    dps:
+      - id: 17
+        name: value
+        type: integer
+        unit: "%"
+        range:
+          min: 30
+          max: 90
+  - entity: sensor
+    class: humidity
+    category: diagnostic
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+  - entity: switch
+    name: ECO mode
+    category: config
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Auxiliary heat
+    category: config
+    dps:
+      - id: 12
+        name: switch
+        type: boolean
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 13
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Buzzer
+    category: config
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+  - entity: light
+    name: Scene light
+    category: config
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+  - entity: sensor
+    class: pm25
+    category: diagnostic
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    class: carbon_dioxide
+    category: diagnostic
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: ppm
+        class: measurement
+  - entity: sensor
+    class: volatile_organic_compounds
+    category: diagnostic
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    translation_key: air_quality
+    category: diagnostic
+    dps:
+      - id: 105
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: excellent
+          - dps_val: "1"
+            value: good
+          - dps_val: "2"
+            value: moderate
+          - dps_val: "3"
+            value: poor
+          - dps_val: "4"
+            value: severe
+  - entity: switch
+    name: Health mode
+    category: config
+    dps:
+      - id: 106
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Turbo
+    category: config
+    dps:
+      - id: 107
+        name: switch
+        type: boolean
+  - entity: switch
+    translation_key: quiet
+    category: config
+    dps:
+      - id: 108
+        name: switch
+        type: boolean
+  - entity: switch
+    name: 10C heating
+    category: config
+    dps:
+      - id: 110
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Fresh air
+    category: config
+    dps:
+      - id: 111
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Energy report
+    category: diagnostic
+    class: energy
+    dps:
+      - id: 112
+        name: sensor
+        type: integer
+        unit: Wh
+        class: total_increasing
+  - entity: switch
+    name: Self clean
+    category: config
+    dps:
+      - id: 114
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Energy save
+    category: config
+    dps:
+      - id: 115
+        name: switch
+        type: boolean
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 116
+        name: fault_code
+        type: integer
+  - entity: sensor
+    name: Fault code
+    category: diagnostic
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+  - entity: select
+    name: Vertical swing
+    icon: "mdi:unfold-more-vertical"
+    category: config
+    dps:
+      - id: 117
+        name: option
+        type: string
+        mapping:
+          - dps_val: ud_00
+            value: fixed
+          - dps_val: ud_01
+            value: top
+          - dps_val: ud_02
+            value: upper
+          - dps_val: ud_03
+            value: mid_upper
+          - dps_val: ud_04
+            value: middle
+          - dps_val: ud_06
+            value: mid_lower
+          - dps_val: ud_08
+            value: lower
+          - dps_val: ud_0a
+            value: bottom
+          - dps_val: ud_0c
+            value: swing
+          - dps_val: ud_0e
+            value: health
+  - entity: select
+    name: Horizontal swing
+    icon: "mdi:unfold-more-horizontal"
+    category: config
+    dps:
+      - id: 118
+        name: option
+        type: string
+        mapping:
+          - dps_val: lr_00
+            value: fixed
+          - dps_val: lr_01
+            value: far_left
+          - dps_val: lr_02
+            value: left
+          - dps_val: lr_03
+            value: mid_left
+          - dps_val: lr_04
+            value: center
+          - dps_val: lr_05
+            value: mid_right
+          - dps_val: lr_06
+            value: right
+          - dps_val: lr_07
+            value: swing
+  - entity: switch
+    name: Self clean 56C
+    category: config
+    dps:
+      - id: 119
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Half degree setting
+    category: config
+    dps:
+      - id: 120
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Outdoor temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 128
+        name: sensor
+        type: integer
+        unit: C
+        class: measurement
+  - entity: select
+    name: Demand response
+    category: config
+    dps:
+      - id: 130
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: disabled
+          - dps_val: "1"
+            value: demand_response
+          - dps_val: "2"
+            value: load_reduction
+          - dps_val: "3"
+            value: reserved

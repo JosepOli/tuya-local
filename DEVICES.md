@@ -78,6 +78,7 @@
 
 ### Air Conditioners / Heat pumps
 
+- Airmart TK5 Wifi air conditioner
 - Arlec PA1123BKHA portable air conditioner
 - Ballu Aura air conditioner
 - Be Cool BC14KL2101F
